@@ -2,18 +2,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionPlace extends StatelessWidget {
+
+  String namePlace;
+  int stars;
+  String descriptionPlace;
+
+  DescriptionPlace(this.namePlace, this.stars, this.descriptionPlace);
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    final text_description = Text(
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit auctor, sapien leo praesent etiam iaculis metus ut, consequat lacinia taciti ultrices at tellus integer. Nulla ad conubia donec senectus netus ultrices semper, metus malesuada ridiculus mollis varius himenaeos tellus, potenti habitasse natoque phasellus integer tristique.",
-      style: TextStyle(
-        fontSize: 16.0,
-        fontWeight: FontWeight.w300,
-        color: Colors.black38
+    final star_border = Container(
+      margin: EdgeInsets.only(
+        top: 223.0,
+        right: 3.0,
       ),
-      textAlign: TextAlign.left,
+      child: Icon(
+        Icons.star_border,
+        color: Color(0xFFf2C611),
+      ),
+    );
+
+    final star_half =Container(
+      margin: EdgeInsets.only(
+        top: 223.0,
+        right: 3.0,
+      ),
+      child: Icon(
+        Icons.star_half,
+        color: Color(0xFFf2C611),
+      ),
     );
 
     final star = Container(
@@ -37,7 +57,7 @@ class DescriptionPlace extends StatelessWidget {
           ),
 
           child: Text(
-            "Duwili Ella",
+            namePlace,
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.w900
@@ -51,7 +71,7 @@ class DescriptionPlace extends StatelessWidget {
             star,
             star,
             star,
-            star,
+            star_border
           ],
         )
       ],
@@ -63,7 +83,15 @@ class DescriptionPlace extends StatelessWidget {
         right: 20.0,
         left: 20.0
       ),
-      child: text_description
+      child: new Text(
+        descriptionPlace,
+        style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w300,
+            color: Color(0xFF56575a)
+        ),
+        textAlign: TextAlign.left,
+      )
     );
 
     return Column(
