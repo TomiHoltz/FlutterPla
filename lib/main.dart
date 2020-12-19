@@ -20,16 +20,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.pink,
       ),
-      home: Scaffold (
-        appBar: AppBar(
-          title: Text('Hola Mundo')
-      ),
-        body: Center(
-          child: Text('Hola Mundo')
-        ),
-      )//MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -76,44 +69,36 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("Share"),
+        backgroundColor: Colors.pink,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(color: Colors.black87),
+          ),
+          Image.network(
+            "https://www.stariel.com/wp-content/uploads/2009/06/Cosmos-2.jpg",
+            fit: BoxFit.cover,
+            height: 603,
+          ),
+          Center(
+            child: Container(
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration( color: Colors.black38),
+              child: Center(
+                child: Text(
+                  'Menem',
+                  style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold)
+                  ),
+                )
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
