@@ -16,7 +16,7 @@ class DescriptionPlace extends StatelessWidget {
 
     final star_border = Container(
       margin: EdgeInsets.only(
-        top: 223.0,
+        top: 323.0,
         right: 3.0,
       ),
       child: Icon(
@@ -27,7 +27,7 @@ class DescriptionPlace extends StatelessWidget {
 
     final star_half =Container(
       margin: EdgeInsets.only(
-        top: 223.0,
+        top: 323.0,
         right: 3.0,
       ),
       child: Icon(
@@ -38,7 +38,7 @@ class DescriptionPlace extends StatelessWidget {
 
     final star = Container(
       margin: EdgeInsets.only(
-        top: 223.0,
+        top: 323.0,
         right: 3.0,
       ),
       child: Icon(
@@ -51,7 +51,7 @@ class DescriptionPlace extends StatelessWidget {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(
-            top: 220.0,
+            top: 320.0,
             left: 20.0,
             right: 20.0
           ),
@@ -59,6 +59,7 @@ class DescriptionPlace extends StatelessWidget {
           child: Text(
             namePlace,
             style: TextStyle(
+              fontFamily: "Lato",
               fontSize: 30.0,
               fontWeight: FontWeight.w900
             ),
