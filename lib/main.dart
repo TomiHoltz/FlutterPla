@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'review_list.dart';
 import 'description_place.dart';
 import 'gradient_back.dart';
+import 'header_appbar.dart';
 
-void main() {
+void main(){
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light
+    )
+  );
   runApp(MyApp());
-}
+} 
 
 class MyApp extends StatelessWidget {
 
-  String descriptionDummy = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+  String descriptionDummy = "Esta es una descripcion de prueba de Marcos Juarez. \n\nUn destino lleno de gente fachera y de laburantes ";
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +40,11 @@ class MyApp extends StatelessWidget {
           children: <Widget>[
             ListView(
               children: <Widget>[
-                DescriptionPlace("Bahamas", 4, descriptionDummy),
+                DescriptionPlace("Marcos Juarez", 4, descriptionDummy),
                 ReviewList(),
               ],
             ),
-            GradientBack("Popular"),
+            HeaderAppBar()
           ],
         ),
       )
