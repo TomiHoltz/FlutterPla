@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platzi/button_purple.dart';
+import 'package:flutter_platzi/home_trips.dart';
+import 'package:flutter_platzi/platzi_trips.dart';
 import 'review_list.dart';
 import 'description_place.dart';
 import 'gradient_back.dart';
@@ -18,8 +20,7 @@ void main(){
 
 class MyApp extends StatelessWidget {
 
-  String descriptionDummy = "Esta es una descripcion de prueba de Marcos Juarez. \n\nUn destino lleno de gente fachera y de laburantes ";
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,19 +37,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold (
-        body: Stack(
-          children: <Widget>[
-            ListView(
-              children: <Widget>[
-                DescriptionPlace("Marcos Juarez", 4, descriptionDummy),
-                ReviewList(),
-              ],
-            ),
-            HeaderAppBar()
-          ],
-        ),
-      )
+      home: PlatziTrips()
     );
   }
 }
