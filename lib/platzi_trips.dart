@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platzi/profile_trips.dart';
-import 'package:flutter_platzi/search_trips.dart';
-import 'home_trips.dart';
+import 'package:flutter_platzi/ProfileTripsItems/profile_trips.dart';
+import 'package:flutter_platzi/SearchTripsItems/search_trips.dart';
+import 'HomeTripsItems/home_trips.dart';
+
+//Here is the BottomNavigationBar with the function who makes it changes the screens
 
 class PlatziTrips extends StatefulWidget {
   @override
