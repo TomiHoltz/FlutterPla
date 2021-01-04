@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platzi/ProfileTripsItems/profile_card_image_and_details.dart';
-import 'package:flutter_platzi/ProfileTripsItems/profile_cards_list.dart';
-import 'package:flutter_platzi/ProfileTripsItems/profile_header_appbar.dart';
+import 'package:flutter_platzi/ProfileTripsItems/profile_background.dart';
+import 'package:flutter_platzi/ProfileTripsItems/profile_header.dart';
+import 'package:flutter_platzi/ProfileTripsItems/profile_places_list.dart';
+
 
 class ProfileTrips extends StatelessWidget{
   @override
@@ -9,9 +10,14 @@ class ProfileTrips extends StatelessWidget{
     // TODO: implement build
     return Stack(
       children: <Widget>[
-        //ProfilePostsList()
-        ProfileHeaderAppBar(),
-        ProfileCardsList()
+        ProfileBackground(),
+        ListView(
+          children: <Widget>[
+            ProfileHeader(),
+            ProfilePlacesList()
+
+          ],
+        ),
       ],
     );
   }
