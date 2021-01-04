@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Bottons/button_purple.dart';
+import 'package:flutter_platzi/widgets/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
