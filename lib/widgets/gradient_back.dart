@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GradientBack extends StatelessWidget {
   String title = "Popular";
-  double gradientHeight;
+  double gradientHeight = 0.0;
 
   GradientBack(this.title, this.gradientHeight);
 
