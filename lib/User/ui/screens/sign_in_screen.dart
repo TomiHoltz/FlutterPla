@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platzi/platzi_trips.dart';
+import 'package:flutter_platzi/platzi_trips_cupertino.dart';
 import 'package:flutter_platzi/widgets/gradient_back.dart';
 import 'package:flutter_platzi/widgets/button_green.dart';
 import 'package:flutter_platzi/User/bloc/bloc_user.dart';

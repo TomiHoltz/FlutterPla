@@ -18,5 +18,14 @@ class FirebaseAuthAPI {
 
     //Nosotros queremos retornar lo que antes era un FirebaseUser, pero FirebaseUser quedo obsoleto.
     //Ahora creamos un UserCredential y esa credencial va a tener el user adentro (userCredential.user)
+
+    //Tengamos en cuenta que cuando iniciamos sesion se inicia tanto en Firebase como en Google
+    //Por el eso en el signOut() cerramos las dos
+  }
+
+  signOut() async {
+    await _auth.signOut().then((value) => print("Sesion Cerrada"));
+    googleSignIn.signOut();
+    print("Sesion Cerrada");
   }
 }

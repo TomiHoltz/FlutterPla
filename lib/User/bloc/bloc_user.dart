@@ -11,9 +11,14 @@ class UserBloc implements Bloc {
   Stream<User> get authStatus => streamFirebase;
 
   //Casos de uso
-  //1.SignIn a la App con google
+  //1.SignIn a la App con googlevy firebase
   Future<User> signIn() {
     return _auth_repository.signInFirebase();
+  }
+
+  //2.SignOut de google con firebase
+  signOut() {
+    _auth_repository.signOut();
   }
 
   @override
