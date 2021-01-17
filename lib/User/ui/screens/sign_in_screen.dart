@@ -43,11 +43,12 @@ class _SignInScreen extends State<SignInScreen> {
         children: <Widget>[
           GradientBack("", null),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Welcome \n This is your Travel App",
+                "Welcome \nThis is your Travel App",
                 style: TextStyle(
-                    fontSize: 37,
+                    fontSize: 32,
                     fontFamily: "Lato",
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
@@ -55,6 +56,7 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreen(
                 text: "Login with Gmail",
                 onPressed: () {
+                  userBloc.signOut();
                   userBloc.signIn().then((User user) =>
                       print("Username ${user.displayName}")); //Eliminar esto
                 },
