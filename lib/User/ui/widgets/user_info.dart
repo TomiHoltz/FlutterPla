@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platzi/User/model/user.dart';
 
 class UserInfo extends StatelessWidget {
-  User user;
+  Userr user;
 
   UserInfo(@required this.user);
 
