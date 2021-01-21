@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_platzi/Place/ui/widgets/card_image.dart';
 import 'package:flutter_platzi/Place/ui/widgets/text_input_location.dart';
 import 'package:flutter_platzi/widgets/gradient_back.dart';
 import 'package:flutter_platzi/widgets/text_input.dart';
@@ -21,9 +22,9 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreen extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
-
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
+    final _controllerLocationPlace = TextEditingController();
 
     return Scaffold(
       body: Stack(
@@ -57,9 +58,19 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
             margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
             child: ListView(
               children: <Widget>[
-                Container(), //Foto
-                Container(//TextField Title
-                  margin: EdgeInsets.only(bottom: 20.0),
+                Container(
+                  alignment: Alignment.center,
+                  child: CardImageWithFabIcon(
+                    pathImage: "assets/images/marcos_juarez.jpeg",//widget.image.path,
+                    iconData: Icons.camera_alt,
+                    width: 350.0,
+                    height: 250.0,
+                    left: 0.0,
+                  ),
+                ), //Foto
+                Container(
+                  //TextField Title
+                  margin: EdgeInsets.only(top: 20.0,bottom: 20.0),
                   child: TextInput(
                     hintText: "Title",
                     textInputType: null,
@@ -68,16 +79,16 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   ),
                 ),
                 TextInput(
-                  hintText: "Description", 
-                  textInputType: TextInputType.multiline,
-                  maxLines: 4, 
-                  controller: _controllerDescriptionPlace),
+                    hintText: "Description",
+                    textInputType: TextInputType.multiline,
+                    maxLines: 4,
+                    controller: _controllerDescriptionPlace),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                   child: TextInputLocation(
-                    hintText: "Add Location",
-                    iconData: Icons.location_on
-                  ),
+                      controller: _controllerLocationPlace,
+                      hintText: "Add Location",
+                      iconData: Icons.location_on),
                 )
               ],
             ),
