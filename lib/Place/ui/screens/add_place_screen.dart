@@ -1,11 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/ui/widgets/card_image.dart';
 import 'package:flutter_platzi/Place/ui/widgets/text_input_location.dart';
+import 'package:flutter_platzi/User/bloc/bloc_user.dart';
+import 'package:flutter_platzi/widgets/button_purple.dart';
 import 'package:flutter_platzi/widgets/gradient_back.dart';
 import 'package:flutter_platzi/widgets/text_input.dart';
 import 'package:flutter_platzi/widgets/title_header.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   File image;
@@ -25,6 +28,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
     final _controllerLocationPlace = TextEditingController();
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     return Scaffold(
       body: Stack(
@@ -61,7 +65,8 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: "assets/images/marcos_juarez.jpeg",//widget.image.path,
+                    pathImage:
+                        "assets/images/marcos_juarez.jpeg", //widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
@@ -70,7 +75,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 ), //Foto
                 Container(
                   //TextField Title
-                  margin: EdgeInsets.only(top: 20.0,bottom: 20.0),
+                  margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: TextInput(
                     hintText: "Title",
                     textInputType: null,
@@ -89,6 +94,27 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                       controller: _controllerLocationPlace,
                       hintText: "Add Location",
                       iconData: Icons.location_on),
+                ),
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: "Add Place",
+                    onPressed: () {
+                      //Firebase Storage
+                      //Images's URL
+                      //Cloud Firestore
+                      userBloc
+                          .updatePlaceData(Place(
+                        name: _controllerTitlePlace.text,
+                        description: _controllerDescriptionPlace.text,
+                        likes: 0,
+                      ))
+                          .whenComplete(() {
+                        print("TERMINO");
+                        Navigator.pop(context);
+                      });
+                    },
+                  ),
                 )
               ],
             ),
