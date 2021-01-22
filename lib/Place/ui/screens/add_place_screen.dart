@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/ui/widgets/card_image.dart';
@@ -65,8 +66,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage:
-                        "assets/images/marcos_juarez.jpeg", //widget.image.path,
+                    pathImage: widget.image.path,
                     iconData: Icons.camera_alt,
                     width: 350.0,
                     height: 250.0,
@@ -100,9 +100,15 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-                      //Firebase Storage
-                      //Images's URL
-                      //Cloud Firestore
+                      //Id del usuario actual
+                      userBloc.currentUser().then((User user) {
+                        if(user != null){
+                          //Firebase Storage
+                          //Images's URL
+                        }
+                      });
+                      //2.Cloud Firestore
+                      //Place - title, description, url, userOwner, likes
                       userBloc
                           .updatePlaceData(Place(
                         name: _controllerTitlePlace.text,
