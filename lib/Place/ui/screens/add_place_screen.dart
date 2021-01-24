@@ -31,6 +31,47 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
     final _controllerLocationPlace = TextEditingController();
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
+    void handleUpload(BuildContext context) async {
+      final String uid = (await userBloc.currentUser()).uid;
+      if (uid == null) {
+        print('Null uid');
+        return;
+      }
+
+      final uploadTask = userBloc.uploadFile(
+          '$uid/${DateTime.now().toString()}.jpg', widget.image);
+      if (uploadTask == null) {
+        print('Null upload task');
+        return;
+      }
+
+      final taskSnapshot = await uploadTask;
+      if (taskSnapshot == null) {
+        print('Null task snapshot');
+        return;
+      }
+
+      final imageUrl = await taskSnapshot.ref.getDownloadURL();
+      if (imageUrl == null) {
+        print('Null image URL');
+        return;
+      }
+      print('Image url: $imageUrl');
+
+      //Subimos a Firestore el Place (title, description, urlImg, userOwner, likes...)
+      userBloc
+          .updatePlaceData(Place(
+        name: _controllerTitlePlace.text,
+        description: _controllerDescriptionPlace.text,
+        urlImage: imageUrl, //firebase storage url
+        likes: 0,
+      ))
+          .whenComplete(() {
+        print('Termino la subida de la imagen');
+        Navigator.pop(context);
+      });
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -102,23 +143,12 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     onPressed: () {
                       //Id del usuario actual
                       userBloc.currentUser().then((User user) {
-                        if(user != null){
+                        if (user != null) {
                           //Firebase Storage
                           //Images's URL
+                          handleUpload(context);
                         }
-                      });
-                      //2.Cloud Firestore
-                      //Place - title, description, url, userOwner, likes
-                      userBloc
-                          .updatePlaceData(Place(
-                        name: _controllerTitlePlace.text,
-                        description: _controllerDescriptionPlace.text,
-                        likes: 0,
-                      ))
-                          .whenComplete(() {
-                        print("TERMINO");
-                        Navigator.pop(context);
-                      });
+                      }); 
                     },
                   ),
                 )

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/repository/firebase_storage_repository.dart';
 import 'package:flutter_platzi/User/model/user.dart';
@@ -39,7 +40,7 @@ class UserBloc implements Bloc {
 
   //Enviar archivos a FirebaseStorage
   final _firebaseStorageRepository = FirebaseStorageRepository();
-  Future<firebase_storage.UploadTask> uploadFile(
+  uploadFile(
           String path, File image) async =>
       _firebaseStorageRepository.uploadFile(path, image);
 

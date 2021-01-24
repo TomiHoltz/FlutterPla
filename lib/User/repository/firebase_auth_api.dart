@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthAPI {
@@ -13,7 +14,8 @@ class FirebaseAuthAPI {
         GoogleAuthProvider.credential(
             idToken: gSA.idToken, accessToken: gSA.accessToken));
 
-    return userCredential.user;
+      return userCredential.user;
+    
 
     //Nosotros queremos retornar lo que antes era un FirebaseUser, pero FirebaseUser quedo obsoleto.
     //Ahora creamos un UserCredential y esa credencial va a tener el user adentro (userCredential.user)

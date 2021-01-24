@@ -45,7 +45,7 @@ class ProfileHeader extends StatelessWidget {
       user = Userr(
           name: snapshot.data.displayName,
           email: snapshot.data.email,
-          photoUrl: snapshot.data.photoUrl);
+          photoUrl: snapshot.data.photoURL);
       final title = Text(
         'Profile',
         style: TextStyle(

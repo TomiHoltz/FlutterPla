@@ -26,11 +26,15 @@ class ButtonsBar extends StatelessWidget {
               picker
                   .getImage(source: ImageSource.camera)
                   .then((PickedFile image) {
-                Navigator.push(
+                if (image.path == null) {
+                  Navigator.pop(context);
+                } else {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             AddPlaceScreen(image: File(image.path))));
+                }
               }).catchError((onError) => print(onError));
             }),
             //Sign out
