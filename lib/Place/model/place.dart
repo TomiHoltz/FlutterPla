@@ -7,14 +7,14 @@ class Place {
   String description;
   String urlImage;
   int likes;
-  Userr userOwner;
+  //Userr userOwner;
 
   Place({
     Key key,
     @required this.name,
     @required this.description,
     @required this.urlImage,
-    @required this.userOwner,
+    //@required this.userOwner,
     this.likes
   });
 }
