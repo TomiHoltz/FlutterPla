@@ -14,28 +14,29 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreen extends State<SignInScreen> {
   UserBloc userBloc;
-  double screenWidth;
+  double screenWidht;
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery.of(context).size.width;
+    // TODO: implement build
+    screenWidht = MediaQuery.of(context).size.width;
     userBloc = BlocProvider.of(context);
-
     return _handleCurrentSession();
   }
 
-  Widget _handleCurrentSession() {
+  Widget _handleCurrentSession(){
     return StreamBuilder(
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //Snapshot contiene la data, osea el objeto User traido de Firebase
-        if (!snapshot.hasData || snapshot.hasError) {
+        //snapshot- data - Object User
+        if(!snapshot.hasData || snapshot.hasError) {
           return signInGoogleUI();
         } else {
           return PlatziTrips();
         }
       },
     );
+
   }
 
   Widget signInGoogleUI() {
@@ -43,29 +44,27 @@ class _SignInScreen extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBack(
-            gradientHeight: null,
-          ),
+          GradientBack(gradientHeight: null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Flexible(
                 child: Container(
-                  margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                  width: screenWidth,
-                  child: Text(
-                    "Welcome, \nThis is your Travel App",
+                  width: screenWidht,
+                  child: Text("Welcome \nThis is your Travel App",
                     style: TextStyle(
-                      fontSize: 32,
-                      fontFamily: "Lato",
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                        fontSize: 34.0,
+                        fontFamily: "Lato",
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+
+
                     ),
                   ),
                 ),
               ),
-              ButtonGreen(
-                text: "Login with Gmail",
+
+              ButtonGreen(text: "Login with Gmail",
                 onPressed: () {
                   userBloc.signOut();
                   userBloc.signIn().then((User user) {
@@ -73,13 +72,15 @@ class _SignInScreen extends State<SignInScreen> {
                       uid: user.uid,
                       name: user.displayName,
                       email: user.email,
-                      photoUrl: user.photoURL,
+                      photoUrl: user.photoURL
                     ));
                   });
+
                 },
-                width: 300,
-                height: 50,
+                width: 300.0,
+                height: 50.0,
               )
+
             ],
           )
         ],

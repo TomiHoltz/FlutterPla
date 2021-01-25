@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platzi/User/model/user.dart';
 
 class Place {
   String id;

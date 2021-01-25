@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/repository/firebase_storage_repository.dart';
 import 'package:flutter_platzi/User/model/user.dart';
@@ -11,7 +9,6 @@ import 'package:flutter_platzi/User/repository/cloud_firestore_repository.dart';
 import 'package:flutter_platzi/User/ui/widgets/profile_place.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:flutter_platzi/User/repository/auth_repository.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UserBloc implements Bloc {
   final _auth_repository = AuthRepository();
@@ -49,13 +46,19 @@ class UserBloc implements Bloc {
   List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
       _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
+  Stream<QuerySnapshot> myPlacesListSream(String uid) =>
+      FirebaseFirestore.instance
+          .collection(CloudFirestoreAPI().PLACES)
+          .where("userOwner",
+              isEqualTo: FirebaseFirestore.instance
+                  .doc("${CloudFirestoreAPI().USERS}/$uid"))
+          .snapshots();
+
   //Enviar archivos a FirebaseStorage
   final _firebaseStorageRepository = FirebaseStorageRepository();
   uploadFile(String path, File image) async =>
       _firebaseStorageRepository.uploadFile(path, image);
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 }
