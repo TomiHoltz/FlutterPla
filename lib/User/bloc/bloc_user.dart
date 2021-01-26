@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/repository/firebase_storage_repository.dart';
+import 'package:flutter_platzi/Place/ui/widgets/card_image.dart';
 import 'package:flutter_platzi/User/model/user.dart';
 import 'package:flutter_platzi/User/repository/cloud_firestore_api.dart';
 import 'package:flutter_platzi/User/repository/cloud_firestore_repository.dart';
@@ -53,6 +54,11 @@ class UserBloc implements Bloc {
               isEqualTo: FirebaseFirestore.instance
                   .doc("${CloudFirestoreAPI().USERS}/$uid"))
           .snapshots();
+
+  //Traer lista de Places al HomeTrips
+  List<CardImageWithFabIcon> buildPlaces(
+          List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
   //Enviar archivos a FirebaseStorage
   final _firebaseStorageRepository = FirebaseStorageRepository();

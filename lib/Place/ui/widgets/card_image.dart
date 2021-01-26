@@ -30,7 +30,7 @@ class CardImageWithFabIcon extends StatelessWidget {
       width: width,
       margin: EdgeInsets.only(left: left),
       decoration: BoxDecoration(
-        image: DecorationImage(fit: BoxFit.cover, image: pathImage.contains('assets')? AssetImage(pathImage):new FileImage(new File(pathImage))),
+        image: DecorationImage(fit: BoxFit.cover, image: pathImage.contains('https')? NetworkImage(pathImage):new FileImage(new File(pathImage))),
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         shape: BoxShape.rectangle,
         boxShadow: <BoxShadow>[

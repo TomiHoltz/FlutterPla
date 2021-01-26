@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_platzi/Place/model/place.dart';
 import 'package:flutter_platzi/Place/ui/widgets/card_image.dart';
 import 'package:flutter_platzi/User/model/user.dart';
@@ -63,5 +65,24 @@ class CloudFirestoreAPI {
     return profilePlaces;
   }
 
-  
+  List<CardImageWithFabIcon> buildPlaces(
+      List<DocumentSnapshot> placesListSnapshot) {
+    List<CardImageWithFabIcon> placesCard = List<CardImageWithFabIcon>();
+    double width = 300.0;
+    double height = 350.0;
+    double left = 20.0;
+    IconData iconData = Icons.favorite_border;
+
+    placesListSnapshot.forEach((p) {
+      placesCard.add(CardImageWithFabIcon(
+          pathImage: p.data()['urlImage'],
+          height: height,
+          width: width,
+          left: left,
+          onPressedFabIcon: () {},
+          iconData: iconData));
+    });
+
+    return placesCard;
+  }
 }
